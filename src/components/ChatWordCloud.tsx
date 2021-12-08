@@ -19,7 +19,6 @@ interface WordData {
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0% 5%;
   justify-content: space-evenly;
   align-items: center;
   height: 1000px;
@@ -30,6 +29,7 @@ const EmojiSpan = styled.span`
 `;
 
 export const ChatWordCloud = ({ data }: Props) => {
+  console.log(data);
   if (!data) return <></>;
 
   const words: Array<WordData> = Object.entries(data.wordFrequency).map(([key, value]) => ({
@@ -56,8 +56,8 @@ export const ChatWordCloud = ({ data }: Props) => {
 
       <Wordcloud
         words={words}
-        width={800}
-        height={400}
+        width={window.innerWidth}
+        height={window.innerHeight / 2}
         fontSize={fontSizeSetter}
         font={'Impact'}
         padding={2}

@@ -9,7 +9,6 @@ import {
   YesNoPercentage,
   ChatWordCloud,
   Title,
-  P,
   ChatText,
   IntroP
 } from '../components';
