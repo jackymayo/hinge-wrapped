@@ -4,7 +4,15 @@ import { Link } from 'react-router-dom';
 
 import { EventData, Event } from '../types';
 import { generateData } from '../utils/data';
-import { EventsByMonth, YesNoPercentage, ChatWordCloud, Title, P } from '../components';
+import {
+  EventsByMonth,
+  YesNoPercentage,
+  ChatWordCloud,
+  Title,
+  P,
+  ChatText,
+  IntroP
+} from '../components';
 import { COLORS, MATCHES_FILE_NAME } from '../constants';
 
 const StyledDiv = styled.div`
@@ -92,15 +100,15 @@ export const HomePage = () => {
       {!eventData && (
         <Intro>
           <Title text="Hinge Wrapped" />
-          <P>
+          <IntroP>
             Are you a hopeless romantic? Or maybe more of a data-driven one? <br />
-            Upload your Hinge data and get some insights about your love life this year.
-          </P>
+            Get insights about your Hinge activity and love life this past year.
+          </IntroP>
 
-          <P>
+          <IntroP>
             Upload the <code>matches.json</code> file from your export below to get started. Read
             the <Link to="/instructions">instructions</Link> if you're not sure what this is.
-          </P>
+          </IntroP>
 
           {errorMessage && (
             <ErrorPill>
@@ -119,8 +127,8 @@ export const HomePage = () => {
           <Topbar>Hinge Wrapped</Topbar>
           <YesNoPercentage data={eventData?.yesNoPercentage} />
           <EventsByMonth data={eventData?.eventsByMonth} />
-
-          {/* <ChatWordCloud data={eventData?.chatWordFrequency} /> */}
+          <ChatText data={eventData} />
+          <ChatWordCloud data={eventData?.chatWordFrequency} />
         </>
       )}
     </StyledDiv>

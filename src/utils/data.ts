@@ -1,6 +1,7 @@
 import { parseISO } from 'date-fns';
-import { range, words } from 'lodash';
+import { range, words, isInteger } from 'lodash';
 import sw from 'stopword';
+import emojiRegex from 'emoji-regex';
 
 import { YEAR } from '../constants';
 import { EventData, MonthlyEventCount, Event, EventTypes, WordCount } from '../types';
@@ -89,8 +90,10 @@ export const getAverageChatLength = (events: Array<Event>): number => {
   return chatLength / chatCount;
 };
 
-export const getChatWordFrequency = (events: Array<Event>): WordCount => {
+export const getChatWordFrequency = (events: Array<Event>) => {
   const wordFrequency: WordCount = {};
+  const emojiFrequency: WordCount = {};
+  const regex = emojiRegex();
 
   events.forEach((e) => {
     if (e.chats) {
@@ -101,17 +104,30 @@ export const getChatWordFrequency = (events: Array<Event>): WordCount => {
          */
         sw.removeStopwords(words(body as string)).forEach((w: string) => {
           const remoteWord = w.toLowerCase();
-          if (wordFrequency[remoteWord]) {
-            wordFrequency[remoteWord]++;
+
+          if (isInteger(+remoteWord)) {
+            return;
+          }
+
+          if (remoteWord.match(regex)) {
+            if (emojiFrequency[remoteWord]) {
+              emojiFrequency[remoteWord]++;
+            } else {
+              emojiFrequency[remoteWord] = 1;
+            }
           } else {
-            wordFrequency[remoteWord] = 1;
+            if (wordFrequency[remoteWord]) {
+              wordFrequency[remoteWord]++;
+            } else {
+              wordFrequency[remoteWord] = 1;
+            }
           }
         });
       });
     }
   });
 
-  return wordFrequency;
+  return { wordFrequency, emojiFrequency };
 };
 
 export const generateData = (events: Array<Event>): EventData => {

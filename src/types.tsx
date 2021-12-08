@@ -49,7 +49,8 @@ export interface EventData {
   yesNoPercentage: { yes: number; no: number; total: number };
   maxChatLength: number;
   averageChatLength: number;
-  matchToChatRatio?: number;
-  averageMatchToChatLength?: number;
-  chatWordFrequency: WordCount;
+  chatWordFrequency: {
+    wordFrequency: WordCount;
+    emojiFrequency: WordCount;
+  };
 }

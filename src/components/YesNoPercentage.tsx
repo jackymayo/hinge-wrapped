@@ -18,7 +18,6 @@ const StyledDiv = styled.div`
   margin: 10% 5% 5%;
   justify-content: space-evenly;
   align-items: center;
-  //   height: 300px;
 `;
 
 const TextStack = styled.div`

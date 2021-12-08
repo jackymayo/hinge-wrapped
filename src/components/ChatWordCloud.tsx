@@ -1,9 +1,11 @@
+import styled from 'styled-components';
 import { Text } from '@visx/text';
 import { scaleLog } from '@visx/scale';
 import { Wordcloud } from '@visx/wordcloud';
 
 import { EventData } from '../types';
 import { COLORS } from '../constants';
+import { Header } from './Text';
 
 interface Props {
   data?: EventData['chatWordFrequency'];
@@ -14,10 +16,23 @@ interface WordData {
   value: number;
 }
 
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0% 5%;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 1000px;
+`;
+
+const EmojiSpan = styled.span`
+  font-size: 50px;
+`;
+
 export const ChatWordCloud = ({ data }: Props) => {
   if (!data) return <></>;
 
-  const words: Array<WordData> = Object.entries(data).map(([key, value]) => ({
+  const words: Array<WordData> = Object.entries(data.wordFrequency).map(([key, value]) => ({
     text: key,
     value
   }));
@@ -36,30 +51,38 @@ export const ChatWordCloud = ({ data }: Props) => {
   };
 
   return (
-    <Wordcloud
-      words={words}
-      width={800}
-      height={400}
-      fontSize={fontSizeSetter}
-      font={'Impact'}
-      padding={2}
-      spiral={'archimedean'}
-      rotate={getRotationDegree}
-    >
-      {(cloudWords) =>
-        cloudWords.map((w, i) => (
-          <Text
-            key={w.text}
-            fill={Object.values(COLORS)[i % Object.keys(COLORS).length]}
-            textAnchor={'middle'}
-            transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
-            fontSize={w.size}
-            fontFamily={w.font}
-          >
-            {w.text}
-          </Text>
-        ))
-      }
-    </Wordcloud>
+    <StyledDiv>
+      <Header>The conversations looked something like this...</Header>
+
+      <Wordcloud
+        words={words}
+        width={800}
+        height={400}
+        fontSize={fontSizeSetter}
+        font={'Impact'}
+        padding={2}
+        spiral={'archimedean'}
+        rotate={getRotationDegree}
+      >
+        {(cloudWords) =>
+          cloudWords.map((w, i) => (
+            <Text
+              key={w.text}
+              fill={Object.values(COLORS)[i % Object.keys(COLORS).length]}
+              textAnchor={'middle'}
+              transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
+              fontSize={w.size}
+              fontFamily={w.font}
+            >
+              {w.text}
+            </Text>
+          ))
+        }
+      </Wordcloud>
+
+      <Header>
+        Your most used emoji was <EmojiSpan>😍</EmojiSpan>
+      </Header>
+    </StyledDiv>
   );
 };

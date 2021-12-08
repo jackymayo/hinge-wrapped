@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledTitle = styled.h1`
-  font-size: 65px;
+  font-size: 100px;
   font-family: 'Source Serif Pro', serif;
 `;
 
@@ -15,6 +15,12 @@ const StyledP = styled.p`
   ${PCSS}
   text-align: center;
   width: 40%;
+`;
+
+const StyledIntroP = styled.p`
+  ${PCSS}
+  text-align: center;
+  width: 70%;
 `;
 
 const StyledLeftP = styled.p`
@@ -41,6 +47,10 @@ export const P = ({ children }: { children: React.ReactNode }) => {
 
 export const LeftP = ({ children }: { children: React.ReactNode }) => {
   return <StyledLeftP>{children}</StyledLeftP>;
+};
+
+export const IntroP = ({ children }: { children: React.ReactNode }) => {
+  return <StyledIntroP>{children}</StyledIntroP>;
 };
 
 export const Header = ({ children }: { children: React.ReactNode }) => {
