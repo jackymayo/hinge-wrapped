@@ -22,8 +22,15 @@ export const getEventsByMonth = (events: Array<Event>): Array<MonthlyEventCount>
 
   events.forEach((e) => {
     Object.entries(e).forEach(([key, [value]]) => {
-      // console.log(value);
       const month = parseISO(value.timestamp).getMonth();
+
+      // if `we_met` we check value since it can be false
+      if (value.type === 'we_met') {
+        if (!value.did_meet_subject) {
+          return;
+        }
+      }
+
       monthCounts[month][value.type]++;
     });
   });
