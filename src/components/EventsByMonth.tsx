@@ -6,7 +6,8 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  LayoutPosition
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { sum } from 'lodash';
@@ -70,6 +71,9 @@ export const EventsByMonth = ({ data }: Props) => {
     plugins: {
       title: {
         display: false
+      },
+      legend: {
+        position: 'right' as LayoutPosition
       }
     },
     responsive: true,
@@ -105,13 +109,13 @@ export const EventsByMonth = ({ data }: Props) => {
 
   return (
     <StyledDiv>
-      <Header>
-        This is what your year looked like. You were most active in <b>{topMonthName}</b>
-      </Header>
-
       <ChartWrapper>
         <Bar options={options} data={barChartData} />
       </ChartWrapper>
+
+      <Header>
+        This is what your year looked like. You were most active in <b>{topMonthName}</b>
+      </Header>
     </StyledDiv>
   );
 };

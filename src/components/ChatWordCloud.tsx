@@ -21,7 +21,6 @@ const StyledDiv = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 1000px;
 `;
 
 const EmojiSpan = styled.span`
@@ -52,12 +51,12 @@ export const ChatWordCloud = ({ data }: Props) => {
 
   return (
     <StyledDiv>
-      <Header>The conversations looked something like this...</Header>
+      <Header>The conversations looked something like this</Header>
 
       <Wordcloud
         words={words}
         width={window.innerWidth}
-        height={window.innerHeight / 2}
+        height={window.innerHeight / 1.5}
         fontSize={fontSizeSetter}
         font={'Impact'}
         padding={2}
@@ -79,10 +78,6 @@ export const ChatWordCloud = ({ data }: Props) => {
           ))
         }
       </Wordcloud>
-
-      <Header>
-        Your most used emoji was <EmojiSpan>😍</EmojiSpan>
-      </Header>
     </StyledDiv>
   );
 };

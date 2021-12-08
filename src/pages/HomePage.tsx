@@ -41,6 +41,7 @@ const Topbar = styled.div`
   font-weight: 400;
   font-size: 25px;
   background-color: white;
+  z-index: 1;
 `;
 
 const FileInput = styled.input`
@@ -48,7 +49,7 @@ const FileInput = styled.input`
 `;
 
 const Pill = styled.div`
-  width: 40%;
+  width: 70%;
   padding: 10px;
   font-family: 'IBM Plex Sans', sans-serif;
   margin-top: 2%;

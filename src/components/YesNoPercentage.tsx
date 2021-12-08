@@ -53,8 +53,9 @@ export const YesNoPercentage = ({ data }: Props) => {
     <StyledDiv>
       <TextStack>
         <Header>
-          In {YEAR}, you crossed paths with <b>{data?.total.toLocaleString()}</b> lucky suitors
-          <br />- but only said yes to <b>{(data!.yes * 100).toFixed(1)}%</b>
+          In {YEAR}, you crossed paths with <b>{data?.total.toLocaleString()}</b> lucky suitors -
+          <br />
+          but only said yes to <b>{(data!.yes * 100).toFixed(1)}%</b>
         </Header>
         <Header>{copy}</Header>
       </TextStack>
