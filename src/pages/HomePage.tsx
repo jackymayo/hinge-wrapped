@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { EventData } from '../types';
 import { generateData } from '../utils/data';
-import { EventsByMonth, YesNoPercentage } from '../components';
+import { EventsByMonth, YesNoPercentage, ChatWordCloud } from '../components';
 
 // TODO delete this
 import events from '../tmp/matches.json';
@@ -38,6 +38,7 @@ export const HomePage = () => {
     <StyledDiv>
       <EventsByMonth data={eventData?.eventsByMonth} />
       <YesNoPercentage data={eventData?.yesNoPercentage} />
+      <ChatWordCloud data={eventData?.chatWordFrequency} />
       {/* <input type="file" onChange={handleFileUploadChange} /> */}
     </StyledDiv>
   );

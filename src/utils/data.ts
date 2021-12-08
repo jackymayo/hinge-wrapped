@@ -1,7 +1,8 @@
 import { parseISO } from 'date-fns';
 import { range, words } from 'lodash';
-import { YEAR } from '../constants';
+import sw from 'stopword';
 
+import { YEAR } from '../constants';
 import { EventData, MonthlyEventCount, Event, EventTypes, WordCount } from '../types';
 
 // NOTE: Iiterating over the array multiple times because small dataset and it makes it easier to break up the work
@@ -31,10 +32,10 @@ export const getEventsByMonth = (events: Array<Event>): Array<MonthlyEventCount>
 };
 
 export const getEventPercentages = (events: Array<Event>) => {
-  let total = 0;
   const eventCount: any = {
     yes: 0,
-    no: 0
+    no: 0,
+    total: 0
   };
 
   events.forEach((e) => {
@@ -43,12 +44,13 @@ export const getEventPercentages = (events: Array<Event>) => {
     } else {
       eventCount.yes++;
     }
-    total++;
+    eventCount.total++;
   });
 
   return {
-    yes: eventCount.yes / total,
-    no: eventCount.no / total
+    yes: eventCount.yes / eventCount.total,
+    no: eventCount.no / eventCount.total,
+    total: eventCount.total
   };
 };
 
@@ -86,7 +88,11 @@ export const getChatWordFrequency = (events: Array<Event>): WordCount => {
   events.forEach((e) => {
     if (e.chats) {
       e.chats.forEach(({ body }) => {
-        words(body as string).forEach((w: string) => {
+        /**
+         * "Stopwords" are words that are so frequent that
+         * they can safely be removed from a text without altering its meaning.
+         */
+        sw.removeStopwords(words(body as string)).forEach((w: string) => {
           const remoteWord = w.toLowerCase();
           if (wordFrequency[remoteWord]) {
             wordFrequency[remoteWord]++;
@@ -107,8 +113,6 @@ export const generateData = (events: Array<Event>): EventData => {
     yesNoPercentage: getEventPercentages(events),
     maxChatLength: getMaxChatLength(events),
     averageChatLength: getAverageChatLength(events),
-    // chatLengthByMonth: [],
-    // matchToChatRatio: 0,
     chatWordFrequency: getChatWordFrequency(events)
   };
 };

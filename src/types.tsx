@@ -46,7 +46,7 @@ export interface WordCount {
 
 export interface EventData {
   eventsByMonth: Array<MonthlyEventCount>;
-  yesNoPercentage: { yes: number; no: number };
+  yesNoPercentage: { yes: number; no: number; total: number };
   maxChatLength: number;
   averageChatLength: number;
   matchToChatRatio?: number;
