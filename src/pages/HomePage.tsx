@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 import { EventData } from '../types';
 import { generateData } from '../utils/data';
-import { EventsByMonth } from '../components';
+import { EventsByMonth, YesNoPercentage } from '../components';
 
 // TODO delete this
 import events from '../tmp/matches.json';
 
 const StyledDiv = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 export const HomePage = () => {
@@ -36,6 +37,7 @@ export const HomePage = () => {
   return (
     <StyledDiv>
       <EventsByMonth data={eventData?.eventsByMonth} />
+      <YesNoPercentage data={eventData?.yesNoPercentage} />
       {/* <input type="file" onChange={handleFileUploadChange} /> */}
     </StyledDiv>
   );

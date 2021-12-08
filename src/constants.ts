@@ -1,9 +1,9 @@
 export const YEAR = 2021;
 export const COLORS = {
-  red: '#853522',
-  blue: '#4484ec',
-  purple: '#a86ca5',
-  black: '#2b2b2b',
-  grey: '#a3a5c1',
-  orange: '#a24e56'
+  grey: '#c2c8cc',
+  green: '#90bbbb',
+  blue: '#5293c7',
+  red: '#e35b66',
+  yellow: '#ffb057',
+  purple: '#b552e2'
 };

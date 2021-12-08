@@ -42,8 +42,7 @@ export const EventsByMonth = ({ data }: Props) => {
   const options = {
     plugins: {
       title: {
-        display: true,
-        text: 'Events by month'
+        display: false
       }
     },
     responsive: true,
@@ -59,7 +58,7 @@ export const EventsByMonth = ({ data }: Props) => {
 
   return (
     <div>
-      <Bar options={options} data={barChartData} width={800} height={400} />
+      <Bar options={options} data={barChartData} />
     </div>
   );
 };

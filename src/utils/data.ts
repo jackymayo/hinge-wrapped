@@ -2,7 +2,7 @@ import { parseISO } from 'date-fns';
 import { range, words } from 'lodash';
 import { YEAR } from '../constants';
 
-import { EventData, MonthlyEventCount, Event, EventTypes, EventCount, WordCount } from '../types';
+import { EventData, MonthlyEventCount, Event, EventTypes, WordCount } from '../types';
 
 // NOTE: Iiterating over the array multiple times because small dataset and it makes it easier to break up the work
 
@@ -30,7 +30,8 @@ export const getEventsByMonth = (events: Array<Event>): Array<MonthlyEventCount>
   return monthCounts;
 };
 
-export const getEventPercentages = (events: Array<Event>): MonthlyEventCount => {
+export const getEventPercentages = (events: Array<Event>) => {
+  let total = 0;
   const eventCount: any = {
     yes: 0,
     no: 0
@@ -42,9 +43,13 @@ export const getEventPercentages = (events: Array<Event>): MonthlyEventCount => 
     } else {
       eventCount.yes++;
     }
+    total++;
   });
 
-  return eventCount;
+  return {
+    yes: eventCount.yes / total,
+    no: eventCount.no / total
+  };
 };
 
 export const getMaxChatLength = (events: Array<Event>): number => {
@@ -99,7 +104,7 @@ export const getChatWordFrequency = (events: Array<Event>): WordCount => {
 export const generateData = (events: Array<Event>): EventData => {
   return {
     eventsByMonth: getEventsByMonth(events),
-    eventPercentages: getEventPercentages(events),
+    yesNoPercentage: getEventPercentages(events),
     maxChatLength: getMaxChatLength(events),
     averageChatLength: getAverageChatLength(events),
     // chatLengthByMonth: [],
