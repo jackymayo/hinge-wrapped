@@ -49,6 +49,7 @@ export interface EventData {
   yesNoPercentage: { yes: number; no: number; total: number };
   maxChatLength: number;
   averageChatLength: number;
+  chatTimeOfDayFrequency: Array<{ hour: string; count: number }>;
   chatWordFrequency: {
     wordFrequency: WordCount;
     emojiFrequency: WordCount;

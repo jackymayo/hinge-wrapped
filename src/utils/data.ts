@@ -1,5 +1,5 @@
 import { parseISO } from 'date-fns';
-import { range, words, isInteger } from 'lodash';
+import { range, words, isInteger, sortBy } from 'lodash';
 import sw from 'stopword';
 import emojiRegex from 'emoji-regex';
 
@@ -8,7 +8,7 @@ import { EventData, MonthlyEventCount, Event, EventTypes, WordCount } from '../t
 
 // NOTE: Iiterating over the array multiple times because small dataset and it makes it easier to break up the work
 
-export const getEventsByMonth = (events: Array<Event>): Array<MonthlyEventCount> => {
+const getEventsByMonth = (events: Array<Event>): Array<MonthlyEventCount> => {
   // Construct default count objects
   const eventCount: any = {};
   for (const e in EventTypes) {
@@ -39,7 +39,7 @@ export const getEventsByMonth = (events: Array<Event>): Array<MonthlyEventCount>
   return monthCounts;
 };
 
-export const getEventPercentages = (events: Array<Event>) => {
+const getEventPercentages = (events: Array<Event>) => {
   const eventCount: any = {
     yes: 0,
     no: 0,
@@ -62,7 +62,7 @@ export const getEventPercentages = (events: Array<Event>) => {
   };
 };
 
-export const getMaxChatLength = (events: Array<Event>): number => {
+const getMaxChatLength = (events: Array<Event>): number => {
   let maxLength = 0;
 
   events.forEach((e) => {
@@ -76,7 +76,7 @@ export const getMaxChatLength = (events: Array<Event>): number => {
   return maxLength;
 };
 
-export const getAverageChatLength = (events: Array<Event>): number => {
+const getAverageChatLength = (events: Array<Event>): number => {
   let chatLength = 0;
   let chatCount = 0;
 
@@ -90,7 +90,7 @@ export const getAverageChatLength = (events: Array<Event>): number => {
   return chatLength / chatCount;
 };
 
-export const getChatWordFrequency = (events: Array<Event>) => {
+const getChatWordFrequency = (events: Array<Event>) => {
   const wordFrequency: WordCount = {};
   const emojiFrequency: WordCount = {};
   const regex = emojiRegex();
@@ -130,12 +130,37 @@ export const getChatWordFrequency = (events: Array<Event>) => {
   return { wordFrequency, emojiFrequency };
 };
 
+const getChatTimeOfDayFrequency = (events: Array<Event>) => {
+  const hourCounts = range(0, 24).reduce((acc: any, curr) => {
+    acc[curr > 9 ? curr.toString() : `0${curr}`] = 0;
+    return acc;
+  }, {});
+
+  events.forEach((e) => {
+    if (e.chats) {
+      e.chats.forEach((chat) => {
+        const hour = chat.timestamp.slice(11, 13);
+        hourCounts[hour]++;
+      });
+    }
+  });
+
+  return sortBy(
+    Object.entries(hourCounts).map(([k, v]) => ({
+      hour: k,
+      count: v as number
+    })),
+    'hour'
+  );
+};
+
 export const generateData = (events: Array<Event>): EventData => {
   return {
     eventsByMonth: getEventsByMonth(events),
     yesNoPercentage: getEventPercentages(events),
     maxChatLength: getMaxChatLength(events),
     averageChatLength: getAverageChatLength(events),
-    chatWordFrequency: getChatWordFrequency(events)
+    chatWordFrequency: getChatWordFrequency(events),
+    chatTimeOfDayFrequency: getChatTimeOfDayFrequency(events)
   };
 };

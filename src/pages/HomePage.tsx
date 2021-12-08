@@ -9,7 +9,7 @@ import {
   YesNoPercentage,
   ChatWordCloud,
   Title,
-  ChatText,
+  ChatStats,
   IntroP
 } from '../components';
 import { COLORS, MATCHES_FILE_NAME } from '../constants';
@@ -128,7 +128,7 @@ export const HomePage = () => {
           <Topbar>Hinge Wrapped</Topbar>
           <YesNoPercentage data={eventData?.yesNoPercentage} />
           <EventsByMonth data={eventData?.eventsByMonth} />
-          <ChatText data={eventData} />
+          <ChatStats data={eventData} />
           <ChatWordCloud data={eventData?.chatWordFrequency} />
         </>
       )}

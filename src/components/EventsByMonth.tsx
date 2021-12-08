@@ -84,6 +84,9 @@ export const EventsByMonth = ({ data }: Props) => {
       },
       legend: {
         position: (window.innerWidth > 768 ? 'right' : 'bottom') as LayoutPosition
+      },
+      animation: {
+        duration: 0
       }
     },
     responsive: true,

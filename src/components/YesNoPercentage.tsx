@@ -54,6 +54,9 @@ export const YesNoPercentage = ({ data }: Props) => {
     plugins: {
       legend: {
         display: false
+      },
+      animation: {
+        duration: 0
       }
     }
   };

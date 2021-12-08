@@ -24,7 +24,6 @@ const StyledDiv = styled.div`
 `;
 
 export const ChatWordCloud = ({ data }: Props) => {
-  console.log(data);
   if (!data) return <></>;
 
   const words: Array<WordData> = Object.entries(data.wordFrequency).map(([key, value]) => ({
