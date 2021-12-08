@@ -18,11 +18,22 @@ const StyledDiv = styled.div`
   margin: 10% 5% 5%;
   justify-content: space-evenly;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin: 15% 1% 5% 1%;
+  }
 `;
 
 const TextStack = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const DoughtnutDiv = styled.div`
+  @media (max-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const YesNoPercentage = ({ data }: Props) => {
@@ -59,9 +70,9 @@ export const YesNoPercentage = ({ data }: Props) => {
         </Header>
         <Header>{copy}</Header>
       </TextStack>
-      <div>
+      <DoughtnutDiv>
         <Doughnut data={doughnutChartData} options={options} />
-      </div>
+      </DoughtnutDiv>
     </StyledDiv>
   );
 };

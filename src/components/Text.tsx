@@ -3,12 +3,21 @@ import styled from 'styled-components';
 const StyledTitle = styled.h1`
   font-size: 100px;
   font-family: 'Source Serif Pro', serif;
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+    text-align: center;
+  }
 `;
 
 const PCSS = `
 font-family: 'IBM Plex Sans', sans-serif;
 font-weight: 300;
 margin-bottom: 50px;
+
+@media (max-width: 768px) {
+  font-size: 14px;
+}
 `;
 
 const StyledP = styled.p`
@@ -35,6 +44,11 @@ const StyledHeader = styled.p`
   width: 70%;
   padding-left: 10%;
   padding-right: 10%;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    width: unset;
+  }
 `;
 
 export const Title = ({ text }: { text: string }) => {

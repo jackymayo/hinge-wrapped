@@ -30,10 +30,20 @@ const StyledDiv = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 700px;
+
+  @media (max-width: 768px) {
+    height: unset;
+    margin: 5%;
+  }
 `;
 
 const ChartWrapper = styled.div`
   width: 90%;
+
+  @media (max-width: 768px) {
+    margin-bottom: 5%;
+    width: 95%;
+  }
 `;
 
 const getLabel = (key: string): string => {
@@ -73,10 +83,11 @@ export const EventsByMonth = ({ data }: Props) => {
         display: false
       },
       legend: {
-        position: 'right' as LayoutPosition
+        position: (window.innerWidth > 768 ? 'right' : 'bottom') as LayoutPosition
       }
     },
     responsive: true,
+    ...(window.innerWidth <= 768 && { aspectRatio: 1 }),
     scales: {
       x: {
         stacked: true,

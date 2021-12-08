@@ -10,6 +10,10 @@ const StyledDiv = styled.div`
   align-items: flex-start;
   justify-content: center;
   margin: 50px;
+
+  @media (max-width: 768px) {
+    height: unset;
+  }
 `;
 
 const ListItem = styled.li`

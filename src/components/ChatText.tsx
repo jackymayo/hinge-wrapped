@@ -41,6 +41,11 @@ const ArrowImgLeft = styled.img`
   margin-bottom: -60px;
   margin-left: 30px;
   transform: rotate(270deg);
+
+  @media (max-width: 768px) {
+    margin-bottom: -50px;
+    margin-left: 20px;
+  }
 `;
 
 const ArrowImg = styled.img`
@@ -51,6 +56,11 @@ const ArrowImg = styled.img`
   opacity: 0.8;
   margin-top: -60px;
   margin-left: -30px;
+
+  @media (max-width: 768px) {
+    margin-top: -80px;
+    margin-left: -50px;
+  }
 `;
 
 const StyledSpan = styled.div`

@@ -33,8 +33,9 @@ const Intro = styled.div`
 const Topbar = styled.div`
   font-family: 'Source Serif Pro', serif;
   width: 100%;
-  margin-left: 10px;
+  padding-left: 10px;
   padding-top: 10px;
+  padding-bottom: 10px;
   position: fixed;
   top: 0;
   left: 0;
