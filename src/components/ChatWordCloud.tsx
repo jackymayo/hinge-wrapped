@@ -23,10 +23,6 @@ const StyledDiv = styled.div`
   align-items: center;
 `;
 
-const EmojiSpan = styled.span`
-  font-size: 50px;
-`;
-
 export const ChatWordCloud = ({ data }: Props) => {
   console.log(data);
   if (!data) return <></>;

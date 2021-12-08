@@ -12,6 +12,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/stopword": "^1.0.2",
+    "@types/styled-components": "^5.1.17",
     "@visx/scale": "^2.2.2",
     "@visx/text": "^2.3.0",
     "@visx/wordcloud": "^2.1.0",
