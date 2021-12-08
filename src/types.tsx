@@ -49,7 +49,6 @@ export interface EventData {
   eventPercentages: EventCount;
   maxChatLength: number;
   averageChatLength: number;
-  chatLengthByMonth?: Array<{ month: string; count: number }>;
   matchToChatRatio?: number;
   averageMatchToChatLength?: number;
   chatWordFrequency: WordCount;
