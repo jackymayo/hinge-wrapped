@@ -1,4 +1,4 @@
-import { maxBy, sortBy, sumBy } from 'lodash';
+import { sortBy, sumBy } from 'lodash';
 import styled from 'styled-components';
 import {
   Chart as ChartJS,
