@@ -44,6 +44,8 @@ export const ChatWordCloud = ({ data }: Props) => {
     return rand * degree;
   };
 
+  console.log(words);
+
   return (
     <StyledDiv>
       <Header>The conversations looked something like this</Header>
@@ -53,9 +55,10 @@ export const ChatWordCloud = ({ data }: Props) => {
         width={window.innerWidth}
         height={window.innerHeight / 1.5}
         fontSize={fontSizeSetter}
-        font={'Impact'}
+        font={'IBM Plex Sans'}
+        fontWeight={400}
         padding={2}
-        spiral={'archimedean'}
+        spiral={'rectangular'}
         rotate={getRotationDegree}
       >
         {(cloudWords) =>
