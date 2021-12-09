@@ -29,7 +29,7 @@ export const InstructionsPage = () => {
     'You will receive a notification saying that they received your request',
     'Wait. This can take up to 24 hours',
     'When the data is ready for download, you will receive another notification. The link you receive is only valid for 48 hours',
-    'Open the link on your computer and download the files. Unzip the file you just downloaded',
+    "Download the link to your phone and unzip it. At this point you can send the file to your computer if you don't want to do this on your phone.",
     'Inside you will see a file called <code>matches.json</code>, this is what you will use to build your Hinge Wrapped'
   ];
 

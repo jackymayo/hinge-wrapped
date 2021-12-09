@@ -44,8 +44,6 @@ export const ChatWordCloud = ({ data }: Props) => {
     return rand * degree;
   };
 
-  console.log(words);
-
   return (
     <StyledDiv>
       <Header>The conversations looked something like this</Header>
