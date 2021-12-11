@@ -4,14 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { EventData, Event } from '../types';
 import { generateData } from '../utils/data';
-import {
-  EventsByMonth,
-  YesNoPercentage,
-  ChatWordCloud,
-  Title,
-  ChatStats,
-  IntroP
-} from '../components';
+import { EventsByMonth, YesNoPercentage, ChatWordCloud, ChatStats, IntroP } from '../components';
 import { COLORS, MATCHES_FILE_NAME } from '../constants';
 
 const StyledDiv = styled.div`
@@ -72,6 +65,17 @@ const PlainLink = styled(Link)`
   color: black;
 `;
 
+const Icon = styled.img`
+  width: 200px;
+  margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    width: 160px;
+    margin-top: 100px;
+    margin-bottom: 30px;
+  }
+`;
+
 export const HomePage = () => {
   const [eventData, setEventData] = useState<EventData>();
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -100,7 +104,10 @@ export const HomePage = () => {
     <StyledDiv>
       {!eventData && (
         <Intro>
-          <Title text="Hinge Wrapped" />
+          <Topbar>Hinge Wrapped</Topbar>
+
+          {/* <Title text="Hinge Wrapped" /> */}
+          <Icon src="/static/img/icon.png" alt="icon" />
           <IntroP>
             Are you a hopeless romantic? Or maybe more of a data-driven one? <br />
             Get insights about your Hinge activity and love life this past year.
