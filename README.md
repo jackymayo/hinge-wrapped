@@ -1,6 +1,10 @@
-# boilerplate-react
+# Hinge Wrapped
 
-CRA with some standard packages I use
+Analyze your Hinge data foer the past year
+
+## Getting data
+
+Once you run the app, navigate to the `/instructions` page for more instructions.
 
 ## Available Scripts
 
